@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add New Disease Form</title>
+  <style>
+    input[type=text],
+    select,
+    textarea {
+      width: 100%;
+      /* Full width */
+      padding: 12px;
+      /* Some padding */
+      border: 1px solid #ccc;
+      /* Gray border */
+      border-radius: 4px;
+      /* Rounded borders */
+      box-sizing: border-box;
+      /* Make sure that padding and width stays in place */
+      margin-top: 6px;
+      /* Add a top margin */
+      margin-bottom: 16px;
+      /* Bottom margin */
+      resize: vertical
+        /* Allow the user to vertically resize the textarea (not horizontally) */
+    }
+
+    /* Style the submit button with a specific background color etc */
+    input[type=submit] {
+      background-color: #04AA6D;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    /* When moving the mouse over the submit button, add a darker green color */
+    input[type=submit]:hover {
+      background-color: #45a049;
+    }
+
+    /* Add a background color and some padding around the form */
+    .container {
+      border-radius: 5px;
+      background-color: #f2f2f2;
+      padding: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <%- include('./partials/navbar') %> 
+  <% if (error) { %>
+    <div>
+      <h1><%= error %></h1>
+    </div>
+    <% } else { %> 
+  <h1 style="padding: 1px 0 1px 0; color: cadetblue">Create New Diseases for Patient:</h1>
+
+  <div class="container">
+
+    <form action="/admin/addNewDisease" method="post">
+      <div>
+
+        <label for="nameDisease">Patient Disease:</label>
+        <input type="text" id="nameDisease" name="nameDisease" placeholder="Patient Disease..">
+      <br> <br>
+      <div>
+        <input type="hidden" name="ProfileId" value="<%= id %>">
+        <label for="description">Description:</label>
+        <select name="description" id="description">
+          <option value="Penyakit Menular">Penyakit Menular</option>
+          <option value="Penyakit Tidak Menular">Penyakit Tidak Menular</option>
+        </select><br><br>
+        <label for="level">Level:</label>
+        <select name="level" id="level">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+
+        </select>
+
+      </div>
+      <input type="submit" value="Submit">
+
+    </form>
+  </div>
+<% } %> 
+
+</body>
+
+</html>

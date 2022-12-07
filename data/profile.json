@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "Eric",
+    "age": 17,
+    "location": "Bali",
+    "gender": "male",
+    "UserId": 1
+  },
+  {
+    "id": 2,
+    "name": "Rival",
+    "age": 20,
+    "location": "Jakarta",
+    "gender": "male",
+    "UserId": 2
+  },
+  {
+    "id": 3,
+    "name": "kumili",
+    "age": 17,
+    "location": "Bali",
+    "gender": "female",
+    "UserId": 3
+  }
+]

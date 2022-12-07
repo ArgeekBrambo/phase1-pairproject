@@ -1,0 +1,87 @@
+[
+  {
+    "id": 1,
+    "nameDisease": "Covid-19",
+    "description": "Penyakit Menular",
+    "level": 2,
+    "ProfileId": 1
+  },
+  {
+    "id": 2,
+    "nameDisease": "Flu Burung",
+    "description": "Penyakit Menular",
+    "level": 2,
+    "ProfileId": 1
+  },
+  {
+    "id": 3,
+    "nameDisease": "Antrax",
+    "description": "Penyakit Menular",
+    "level": 100,
+    "ProfileId": 1
+  },
+  {
+    "id": 4,
+    "nameDisease": "Batuk menahun",
+    "description": "Penyakit Menular",
+    "level": 2,
+    "ProfileId": 1
+  },
+  {
+    "id": 5,
+    "nameDisease": "Bipolar",
+    "description": "Penyakit Menular",
+    "level": 2,
+    "ProfileId": 1
+  },
+  {
+    "id": 6,
+    "nameDisease": "Depression",
+    "description": "Penyakit Menular",
+    "level": 100,
+    "ProfileId": 1
+  },
+  {
+    "id": 1,
+    "nameDisease": "Covid-19",
+    "description": "Penyakit Menular",
+    "level": 2,
+    "ProfileId": 3
+  },
+  {
+    "id": 2,
+    "nameDisease": "Flu Burung",
+    "description": "Penyakit Menular",
+    "level": 2,
+    "ProfileId": 3
+  },
+  {
+    "id": 3,
+    "nameDisease": "Antrax",
+    "description": "Penyakit Menular",
+    "level": 100,
+    "ProfileId": 3
+  },
+  {
+    "id": 4,
+    "nameDisease": "Batuk menahun",
+    "description": "Penyakit Menular",
+    "level": 2,
+    "ProfileId": 3
+  },
+  {
+    "id": 5,
+    "nameDisease": "Bipolar",
+    "description": "Penyakit Menular",
+    "level": 2,
+    "ProfileId": 3
+  },
+  {
+    "id": 6,
+    "nameDisease": "Depression",
+    "description": "Penyakit Menular",
+    "level": 100,
+    "ProfileId": 3
+  }
+  
+]

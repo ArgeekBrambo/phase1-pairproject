@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Data</title>
+</head>
+
+<body>
+    <%- include('./partials/navbar.ejs') %> 
+    <h1 style="padding: 1px 0 1px 0; color: cadetblue">
+        <%= data.userName %>
+    </h1>
+    <div>
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Location</th>
+                    <th>Gender</th>
+                </tr>
+            </thead>
+            <tbody>
+                    <tr>
+                        <td>
+                            <%= data.Profile.name%>
+                        </td>
+                        <td>
+                            <%= data.Profile.age %>
+                        </td>
+                        <td>
+                            <%= data.Profile.location %>
+                        </td>
+                        <td>
+                            <%= data.Profile.gender %>
+                    </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div>
+        <button><a href="/patient/editPatient/<%= data.Profile.id %>">Edit User and Profile</a></button>
+    </div>
+            <table class="incubators">
+
+                <thead>
+                    <tr>
+                        <th>List of Disease</th>
+                        <th>Description</th>
+                        <th>Level</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <% data.Profile.Diseases.forEach(el=> { %>
+                        <tr>
+                            <td>
+                                <%= el.nameDisease%>
+                            </td>
+                            <td>
+                                <%= el.description %>
+                            </td>
+                            <td>
+                                <%= el.level %>
+                            </td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+                        
+              
+</body>
+
+</html>

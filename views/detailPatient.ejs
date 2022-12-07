@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/navbar') %> <br><br><br>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Detail</title>
+</head>
+<body>
+    <h1>Patient <%= data.Profile.name %></h1>
+
+    <table class="incubators">
+
+        <thead>
+            <tr>
+                <th>List of Disease</th>
+                <th>Description</th>
+                <th>Level</th>
+                <th>Action</th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+            <% data.Profile.Diseases.forEach(el=> { %>
+                <tr>
+                    <td>
+                        <%= el.nameDisease%>
+                    </td>
+                    <td>
+                        <%= el.description %>
+                    </td>
+                    <td>
+                        <%= el.level %>
+                    </td>
+                    <td><button><a href="/admin/diseaseDelete/<%=el.id%>">Delete</a></button></td>
+
+                </tr>
+                <% }) %>
+        </tbody>
+    </table>
+
+    
+    
+
+</body>
+</html>
