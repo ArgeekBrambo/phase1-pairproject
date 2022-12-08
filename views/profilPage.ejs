@@ -11,7 +11,7 @@
 <body>
     <%- include('./partials/navbar.ejs') %> 
     <h1 style="padding: 1px 0 1px 0; color: cadetblue">
-        <%= data.userName %>
+        Selamat datang <%= res1.userName %>, Dr.<%= res2.Profile.name %> specialist <%= res2.specialist %> akan membantumu
     </h1>
     <div>
         <table>
@@ -27,23 +27,23 @@
             <tbody>
                     <tr>
                         <td>
-                            <%= data.Profile.name%>
+                            <%= res1.Profile.name%>
                         </td>
                         <td>
-                            <%= data.Profile.age %>
+                            <%= res1.Profile.age %>
                         </td>
                         <td>
-                            <%= data.Profile.location %>
+                            <%= res1.Profile.location %>
                         </td>
                         <td>
-                            <%= data.Profile.gender %>
+                            <%= res1.Profile.gender %>
                     </tr>
             </tbody>
         </table>
     </div>
 
     <div>
-        <button><a href="/patient/editPatient/<%= data.Profile.id %>">Edit User and Profile</a></button>
+        <button><a href="/patient/editPatient/<%= res1.Profile.id %>">Edit User and Profile</a></button>
     </div>
             <table class="incubators">
 
@@ -57,7 +57,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% data.Profile.Diseases.forEach(el=> { %>
+                    <% res1.Profile.Patient.Diseases.forEach(el=> { %>
                         <tr>
                             <td>
                                 <%= el.nameDisease%>
@@ -69,10 +69,22 @@
                                 <%= el.level %>
                             </td>
                         </tr>
-                        <% }) %>
+                    <% }) %>
                 </tbody>
             </table>
-                        
+            <br><br>
+    <div>
+        Anda mempunyai <%= res1.Profile.Patient.Diseases.length %> penyakit
+    </div>
+    <div>
+        <% if ((res1.Profile.Patient.Diseases.length) < 3) { %>
+            status kesehatan anda mulai membaik
+        <% } else if ( (res1.Profile.Patient.Diseases.length) > 3  && (res1.Profile.Patient.Diseases.length) < 7) { %>
+            status kesehatan anda memburuk
+        <% } else { %> 
+            status kesehatan anda dalam kondisi kritis
+        <% } %> 
+    </div>
               
 </body>
 

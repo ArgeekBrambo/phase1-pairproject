@@ -92,11 +92,18 @@
           <option value="male">Male</option>
           <option value="female">Female</option>
         </select>
-
-
-        
+      </div>
+      <div>
+        <h5 style="padding: 1px 0 1px 0; color: rgb(59, 75, 236)">Choose your Doctor</h3>
+        <label for="DoctorId">Doctor: </label>
+        <select name="DoctorId" id="DoctorId">
+          <% data.forEach(el => { %>
+            <option value="<%= el.Profile.Doctor.id %>">Dr. <%= el.Profile.name %> dengan Specialist <%= el.Profile.Doctor.specialist %></option>
+          <% }); %> 
+        </select>    
       </div>
       <input type="hidden" name="role" value="patient">
+      <input type="hidden" name="status" value="sakit">
       <input type="submit" value="Submit">
         
     </form>

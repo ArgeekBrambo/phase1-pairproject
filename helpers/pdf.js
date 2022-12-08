@@ -31,6 +31,7 @@ const doc = new jsPDF({
 const formatPDF = (text) => {
     doc.text(text, 1, 1)
     doc.save('doc/text.pdf')
+    
 }
 
 module.exports = formatPDF;
