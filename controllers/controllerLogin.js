@@ -30,6 +30,7 @@ class Login {
 
         if (comparePassword) {
           req.session.UserId = result.id
+          req.session.UserRole = result.role
           if (result.role === 'admin') {
             res.redirect('/admin')
           } else if (result.role === 'patient') {
@@ -56,7 +57,7 @@ class Login {
       const downloadPath = path.join(__dirname,'..', 'doc','text.pdf')
       res.download(downloadPath)
     }
-    formatPDF('Surat Keterangan Sakit')
+    formatPDF('Surat Keterangan Sakit 2')
     res.render('pdf')
   }
 

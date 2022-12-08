@@ -9,19 +9,19 @@ class Controller {
     static formCreate(req, res) {
         const { userName, email, password, role, name, age, location, gender } = req.body
         User.create({ userName, email, password, role })
-            .then((data) => {
-                let UserId = data.id
+        .then((data) => {
+        let UserId = data.id
                 // res.send(data)
-                // console.log(data.id);
+                // console.log(data.id);s
 
 
                 // const fkData = data.id
-                Profile.create({ name, age, location, gender, UserId })
-            })
-            .then(() => {
-                res.redirect('/admin')
-            })
-            .catch(err => {
+        Profile.create({ name, age, location, gender, UserId })
+        })
+        .then(() => {
+        res.redirect('/admin')
+        })
+        .catch(err => {
                 let error = err.errors.map(el => {
                     return el.message
                 })
@@ -30,27 +30,47 @@ class Controller {
                 } else {
                     res.send(err)
                 }
-            })
+        })
 
     }
 
     static formAddPatient(req, res) {
         let error = req.query.error
 
-        res.render('formPatientAdd', { error })
+        User.findAll({
+            where: {role : 'admin'},
+            include: {
+                model: Profile,
+                include: Doctor
+            }
+        })
+        .then(data => {
+            // res.send(data)
+            res.render('formPatientAdd', { error, data })
+        })
+        .catch(err => {
+            res.send(err)
+        })
     }
 
     static formCreatePatient(req, res) {
-        const { userName, email, password, role, name, age, location, gender } = req.body
+        // console.log(req.body,'<<<< req BODY');
+        const { userName, email, password, role, name, age, location, gender, DoctorId, status } = req.body
         User.create({ userName, email, password, role })
-            .then((data) => {
-                let UserId = data.id
-                Profile.create({ name, age, location, gender, UserId })
-            })
-            .then(() => {
+        .then((data) => {
+            let UserId = data.id
+            return Profile.create({ name, age, location, gender, UserId })
+        })
+        .then((data) => {
+                
+            console.log(data,'<<<<<< data NIcHHHH');
+            let ProfileId = data.id
+            Patient.create({DoctorId, status, ProfileId})
+        })
+        .then(() => {
                 res.redirect('/login')
-            })
-            .catch(err => {
+        })
+        .catch(err => {
                 let error = err.errors.map(el => {
                     return el.message
                 })
@@ -59,13 +79,13 @@ class Controller {
                 } else {
                     res.send(err)
                 }
-            })
+        })
 
     }
 
     static profilPage(req, res) {
         let UserId = req.session.UserId
-
+        let res1
         User.findByPk(UserId, {
             include: {
                 model: Profile,
@@ -76,8 +96,18 @@ class Controller {
             }            
         })
             .then((data) => {
-                res.send(data)
+                res1 = data
+                // res.send(data)
                 // res.render('profilPage', { data })
+
+                return Doctor.findByPk(res1.Profile.Patient.DoctorId, {
+                    include: Profile
+                })
+            })
+            .then((res2) => {
+                // res.send(data)
+                res.render('profilPage', { res1, res2 })
+                // res.send(res1)
             })
             .catch(err => {
                 res.send(err)
