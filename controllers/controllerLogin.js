@@ -34,11 +34,14 @@ class Login {
             res.redirect('/admin')
           } else if (result.role === 'patient') {
             res.redirect('/patient')
-          }
-        } else {
+          } 
+        } else if  ( !comparePassword ) {
           const errors = 'Invalid Username And Password'
           res.redirect(`/login?errors=${errors}`)
         }
+      } else if (!result) {
+        const errors = 'Please Input Username and Password'
+        res.redirect(`/login?errors=${errors}`)
       }
     })
     .catch((err) => {
