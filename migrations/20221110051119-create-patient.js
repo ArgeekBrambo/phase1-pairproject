@@ -10,7 +10,8 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       status: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        defaultValue: 'sakit'
       },
       DoctorId: {
         type: Sequelize.INTEGER,

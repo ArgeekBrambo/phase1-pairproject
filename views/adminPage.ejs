@@ -28,9 +28,9 @@
 
 <body>
     <%- include('./partials/navbar') %> <br><br><br>
-    <button><a href="/user/formAdd">Add new Admin here</a></button>
+    <h2>Hi <%= dataUser.Profile.name %></h2>
+    <button><a href="/user/formAdd">Add new Doctor here</a></button>
     <h2>Patient List</h2>
-
     <table>
         <tr>
             <th>Name</th>
@@ -39,25 +39,25 @@
             <th>Gender</th>
             <th>Action</th>
         </tr>
-        <% data.forEach(el=> { %>
+        <% dataPasien.forEach(el=> { %>
             <tr>
                 <td>
-                    <%= el.Profile.name %>
+                    <%= el.name %>
                 </td>
                 <td>
-                    <%= el.Profile.age %>
+                    <%= el.age %>
                 </td>
                 <td>
-                    <%= el.Profile.location %>
+                    <%= el.location %>
                 </td>
                 <td>
-                    <%= el.Profile.gender %>
+                    <%= el.gender %>
                 </td>
                 <td>
                     <form >
-                        <button><a href="/admin/detail/<%=el.Profile.UserId%>">Detail Account</a></button>
-                        <button type="submit"><a href="/admin/delete/<%=el.Profile.UserId%>">Delete Account</a></button>
-                        <button><a href="/admin/addNewDisease/<%=el.Profile.UserId%>">Add a new Disease</a></button>
+                        <button><a href="/admin/detail/<%=el.id%>">Detail Account</a></button>
+                        <button type="submit"><a href="/admin/delete/<%=el.UserId%>">Delete Account</a></button>
+                        <button><a href="/admin/addNewDisease/<%=el.id%>">Add a new Disease</a></button>
 
 
                     </form>
