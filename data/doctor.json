@@ -1,0 +1,10 @@
+[
+  { "specialist": "Pernafasan", "ProfileId": 2 },
+  { "specialist": "Umum", "ProfileId": 4 },
+  { "specialist": "Kulit", "ProfileId": 5 },
+  { "specialist": "Umum", "ProfileId": 6 },
+  { "specialist": "Umum", "ProfileId": 7 },
+  { "specialist": "Tulang", "ProfileId": 8 },
+  { "specialist": "Umum", "ProfileId": 9 },
+  { "specialist": "Umum", "ProfileId": 10 }
+]
