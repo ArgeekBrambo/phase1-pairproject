@@ -1,4 +1,4 @@
-const { Disease, Profile, User } = require('../models')
+const { Disease, Profile, User, Patient, Doctor } = require('../models')
 const { hashPassword } = require('../helpers/bcrypt')
 class Controller {
     static formAdd(req, res) {
@@ -69,12 +69,15 @@ class Controller {
         User.findByPk(UserId, {
             include: {
                 model: Profile,
-                include: Disease
-            }
+                include: {
+                    model: Patient,
+                    include: Disease
+                }
+            }            
         })
             .then((data) => {
-                // res.send(data)
-                res.render('profilPage', { data })
+                res.send(data)
+                // res.render('profilPage', { data })
             })
             .catch(err => {
                 res.send(err)
