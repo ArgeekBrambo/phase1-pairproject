@@ -1,5 +1,5 @@
 'use strict';
-const e = require('express');
+// const e = require('express');
 const fs = require('fs')
 
 /** @type {import('sequelize-cli').Migration} */

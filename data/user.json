@@ -19,5 +19,54 @@
     "email": "patient1@gmail.com",
     "password": "qwerty",
     "role": "patient"
+  },
+  {
+    "id": 4,
+    "userName": "mpaxman3",
+    "email": "dhuscroft3@businesswire.com",
+    "password": "RhX6Wk",
+    "role": "admin"
+  },
+  {
+    "id": 5,
+    "userName": "nstobbart4",
+    "email": "cmaria4@wikimedia.org",
+    "password": "B4gesbzpC",
+    "role": "admin"
+  },
+  {
+    "id": 6,
+    "userName": "tlicciardello5",
+    "email": "emyner5@sciencedaily.com",
+    "password": "sOrGhvYL",
+    "role": "admin"
+  },
+  {
+    "id": 7,
+    "userName": "nbelch6",
+    "email": "eclarycott6@xing.com",
+    "password": "1zzLZDA0yIc",
+    "role": "admin"
+  },
+  {
+    "id": 8,
+    "userName": "mpresdie7",
+    "email": "madie7@amazon.co.uk",
+    "password": "KvC8taCk3sC",
+    "role": "admin"
+  },
+  {
+    "id": 9,
+    "userName": "cgladeche8",
+    "email": "mscamp8@statcounter.com",
+    "password": "w9l51jMU",
+    "role": "admin"
+  },
+  {
+    "id": 10,
+    "userName": "jaddison9",
+    "email": "hvinall9@tuttocitta.it",
+    "password": "gnl02DAuy",
+    "role": "admin"
   }
 ]

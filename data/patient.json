@@ -1,0 +1,4 @@
+[
+  { "status": "sakit", "DoctorId": 1, "ProfileId": 1},
+  { "status": "sakit", "DoctorId": 2, "ProfileId": 3}
+]

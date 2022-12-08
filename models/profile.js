@@ -17,11 +17,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Profile.belongsTo(models.User)
-      Profile.hasMany(models.Disease,{
-        onDelete: 'CASCADE',
-        onUpdate: 'CASCADE',
-        hooks: true
-      })
+      Profile.hasOne(models.Doctor)
+      Profile.hasOne(models.Patient)
     }
   }
   Profile.init({
