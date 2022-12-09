@@ -58,8 +58,8 @@ module.exports = (sequelize, DataTypes) => {
           msg: 'password cannot be empty'
         },
         len: {
-          args:[1,100],
-          msg:'Minimal characters is 8'}
+          args:[5,25],
+          msg:'Minimal password characters is 5'}
       }
     },
     role: DataTypes.STRING

@@ -13,6 +13,24 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Disease.belongsTo(models.Patient)
     }
+
+    static levelAverage() {
+      return Disease.findAll({
+        attributes:[
+            [sequelize.fn('AVG', sequelize.col('level')), 'avglevel']
+        ]
+      })
+    }
+
+    diseaseCounter(val) {
+       if ((val) < 3) { 
+        return 'status kesehatan anda mulai membaik'
+     } else if ( (val) > 3  && (val) < 7) { 
+        return 'status kesehatan anda memburuk'
+     } else {  
+        return 'status kesehatan anda dalam kondisi kritis'
+     }  
+    }
   }
   Disease.init({
     nameDisease: DataTypes.STRING,

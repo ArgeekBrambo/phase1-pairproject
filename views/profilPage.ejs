@@ -8,11 +8,16 @@
     <title>Patient Data</title>
 </head>
 
-<body>
+<body class="container">
     <%- include('./partials/navbar.ejs') %> 
-    <h1 style="padding: 1px 0 1px 0; color: cadetblue">
-        Selamat datang <%= res1.userName %>, Dr.<%= res2.Profile.name %> specialist <%= res2.specialist %> akan membantumu
+    <h1 style="padding: 1px 0 1px 0; color: cadetblue" >
+        Selamat datang <%= res1.Profile.name %>, Dr.<%= res2.Profile.name %> specialist <%= res2.specialist %> akan membantumu
     </h1>
+    <div>
+        <% if (pesan) { %>
+            <h1><%= pesan %> </h1>
+        <% } %> 
+    </div>
     <div>
         <table>
 
@@ -41,9 +46,9 @@
             </tbody>
         </table>
     </div>
-
-    <div>
-        <button><a href="/patient/editPatient/<%= res1.Profile.id %>">Edit User and Profile</a></button>
+<br><br>
+    <div >
+        <a href="/patient/editPatient/<%= res1.Profile.id %>" class="button">Edit User and Profile</a>
     </div>
             <table class="incubators">
 
@@ -74,16 +79,21 @@
             </table>
             <br><br>
     <div>
-        Anda mempunyai <%= res1.Profile.Patient.Diseases.length %> penyakit
+        <% if (res1.Profile.Patient.Diseases.length) { %>
+            Anda mempunyai <%= res1.Profile.Patient.Diseases.length %> penyakit
+        <% } %> 
     </div>
     <div>
-        <% if ((res1.Profile.Patient.Diseases.length) < 3) { %>
-            status kesehatan anda mulai membaik
-        <% } else if ( (res1.Profile.Patient.Diseases.length) > 3  && (res1.Profile.Patient.Diseases.length) < 7) { %>
-            status kesehatan anda memburuk
-        <% } else { %> 
-            status kesehatan anda dalam kondisi kritis
+
+        <% if (res1.Profile.Patient.Diseases.length) { %>
+            <%= res1.Profile.Patient.Diseases[0].diseaseCounter(res1.Profile.Patient.Diseases.length) %>
         <% } %> 
+            
+    </div>
+    <div>
+    <form method="get" style="display: flex; justify-content: center;">
+        <input type="submit" name="download" value="download" >
+      </form>
     </div>
               
 </body>

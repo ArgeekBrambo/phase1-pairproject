@@ -25,12 +25,12 @@ const {jsPDF} = require('jspdf')
 const doc = new jsPDF({
     orientation: 'landscape',
     unit: 'in',
-    format: [4,2]
+    format: [13,7]
 })
 
 const formatPDF = (text) => {
     doc.text(text, 1, 1)
-    doc.save('doc/text.pdf')
+    doc.save('doc/text123.pdf')
     
 }
 
