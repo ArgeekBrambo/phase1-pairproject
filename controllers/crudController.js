@@ -1,5 +1,6 @@
 const { Disease, Profile, User, Patient, Doctor } = require('../models')
 const { hashPassword } = require('../helpers/bcrypt')
+const formatPDF = require('../helpers/pdf')
 class Controller {
     static formAdd(req, res) {
         let error = req.query.error
@@ -97,6 +98,7 @@ class Controller {
     static profilPage(req, res) {
         let UserId = req.session.UserId
         let res1
+        let pesan
         User.findByPk(UserId, {
             include: {
                 model: Profile,
@@ -118,7 +120,24 @@ class Controller {
             })
             .then((res2) => {
                 // res.send(data)
-                res.render('profilPage', { res1, res2 })
+                let arr = []
+
+                const {download} = req.query
+                console.log(download,'<<< download');
+                if (download) {
+                    pesan ='surat sakit berhasil didownload'
+                    res.render('profilPage', { res1, res2, pesan })
+                    const downloadPath = path.join(__dirname,'..', 'doc','text.pdf')
+                    res.download(downloadPath)
+                  }
+                let sick = res1.Profile.Patient.Diseases
+                if (sick.length) {
+                    sick.forEach(el => {
+                        arr.push(el.nameDisease)
+                    })
+                }
+                formatPDF(`Surat Keterangan Sakit untuk ${res1.Profile.name} dengan daftar penyakit ${arr}` )
+                res.render('profilPage', { res1, res2, pesan })
                 // res.send(res1)
             })
             .catch(err => {
@@ -130,10 +149,11 @@ class Controller {
 
     static editPatient(req, res) {
         let error = req.query.error
+        console.log(error,'<<<< inich eror');
         User.findByPk(req.session.UserId, {
             include: {
                 model: Profile,
-                include: Disease
+                include: Patient
             }
         })
             .then(data => {
@@ -148,8 +168,12 @@ class Controller {
 
     static patientEdit(req, res) {
         const id = req.params.id
+        let error = []
         // console.log(id);
         const { userName, email, password, name, age, location, gender } = req.body
+        if(!name){
+            error.push('please input your name')
+        }
         const passwordNew = hashPassword(password)
         User.update({ userName, email, password: passwordNew }, { where: { id: req.session.UserId } })
             .then((data) => {
@@ -160,11 +184,11 @@ class Controller {
                 res.redirect('/patient')
             })
             .catch(err => {
-                let error = err.errors.map(el => {
-                    return el.message
+                err.errors.forEach(el => {
+                     error.push(el.message)
                 })
                 if (error) {
-                    res.redirect(`/editPatient/:id?error=${error}`)
+                    res.redirect(`/patient/editPatient/:id?error=${error}`)
                 } else {
                     res.send(err)
                 }
@@ -174,8 +198,11 @@ class Controller {
 
     static profilAdmin(req, res) {
         let UserId = req.session.UserId
+        const {sortBy} = req.query
+        // console.log(req.query);
         let dataUser
         let dataDoctor
+        let dataPasien
         // console.log(UserId);
         User.findByPk(UserId, {
             where: {
@@ -208,15 +235,33 @@ class Controller {
                 return idPasien
             })
             .then(idPasien => {
-                return Profile.findAll({
-                    where: {
-                        id: idPasien
-                    }
-                })
+                if(sortBy) {
+                    return Profile.findAll({
+                        where : {
+                            id: idPasien
+                        },
+                        order: [
+                            ['name', 'ASC']
+                        ]
+                    })
+                } else {
+                    return Profile.findAll({
+                        where : {
+                            id: idPasien
+                        }
+                    })
+                }
             })
-            .then(dataPasien => {
+            .then(data => {
+                // res.send(data)
+                // console.log(data, '<<<<<dari search');
+                dataPasien = data
+                return Disease.levelAverage()
                 // res.send(dataPasien)
-                res.render('adminPage', { dataPasien, dataUser, dataDoctor })
+            })
+            .then((diseaseLevel) => {
+                // console.log(sumPatient, '<<<<<<<<<');
+                res.render('adminPage', { dataPasien, dataUser, dataDoctor, diseaseLevel })
             })
             .catch(err => {
                 console.log(err);
@@ -299,7 +344,6 @@ class Controller {
     }
 
     static addingNewDisease(req, res) {
-        let UserId = req.session.UserId
         let PatientId
         // console.log(req.params);
         // console.log(req.body, '<<<<<');

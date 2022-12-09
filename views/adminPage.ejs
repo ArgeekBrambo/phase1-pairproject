@@ -26,11 +26,29 @@
     </style>
 </head>
 
-<body>
+<body class="container">
     <%- include('./partials/navbar') %> <br><br><br>
+<div>
     <h2>Hi <%= dataUser.Profile.name %></h2>
-    <button><a href="/user/formAdd">Add new Doctor here</a></button>
-    <h2>Patient List</h2>
+    <p>Rata - rata level penyakit pasien anda adalah <%= Math.round(diseaseLevel[0].dataValues.avglevel) %></p>
+    <a href="/admin/?sortBy=name" class="button">Sort By Name</a><br>
+    <form action="/admin" method="get">
+        <input
+          type="text"
+          class="keyword"
+          placeholder="Search your patient here"
+          name="search"
+          autocomplete="off"
+        />
+        <button type="submit" class="button">SEARCH</button>
+      </form>
+
+
+</div>
+<div >
+    <a href="/admin/formAdd" class="button-b">Add new Doctor here</a>
+</div>
+    <h2 style="display: flex; justify-content: center;">Patient List</h2>
     <table>
         <tr>
             <th>Name</th>
@@ -55,11 +73,9 @@
                 </td>
                 <td>
                     <form >
-                        <button><a href="/admin/detail/<%=el.id%>">Detail Account</a></button>
-                        <button type="submit"><a href="/admin/delete/<%=el.UserId%>">Delete Account</a></button>
-                        <button><a href="/admin/addNewDisease/<%=el.id%>">Add a new Disease</a></button>
-
-
+                        <a href="/admin/detail/<%=el.UserId%>" class="button">Detail Account</a>
+                        <a href="/admin/delete/<%=el.UserId%>" class="button">Delete Account</a>
+                        <a href="/admin/addNewDisease/<%=el.id%>" class="button">Add a new Disease</a>
                     </form>
                 </td>
             </tr>

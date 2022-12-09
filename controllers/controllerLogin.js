@@ -1,5 +1,5 @@
 const bcrypt = require('bcryptjs')
-const { hashPassword, compareHash } = require('../helpers/bcrypt')
+const { compareHash } = require('../helpers/bcrypt')
 const { User } = require('../models/index')
 const formatPDF = require('../helpers/pdf')
 const fs = require('fs')
@@ -19,14 +19,14 @@ class Login {
 
   static login(req, res) {
     let { userName, password } = req.body
-
+    console.log(password,'<<< pass');
     User.findOne({
       where: {userName}
     })
     .then((result) => {
-      // console.log(result, '<<<');
       if (result) {
         const comparePassword = compareHash(password, result.password)
+        console.log(comparePassword, '<<<');
 
         if (comparePassword) {
           req.session.UserId = result.id
@@ -52,7 +52,7 @@ class Login {
 
   static pdf(req, res) {
     const {download} = req.query
-
+    console.log(download,'<<< download');
     if (download) {
       const downloadPath = path.join(__dirname,'..', 'doc','text.pdf')
       res.download(downloadPath)

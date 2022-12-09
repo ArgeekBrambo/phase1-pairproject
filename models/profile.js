@@ -23,12 +23,44 @@ module.exports = (sequelize, DataTypes) => {
   }
   Profile.init({
     name: DataTypes.STRING,
-    age: DataTypes.INTEGER,
-    location: DataTypes.STRING,
+    age: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Age cannot be empty'
+        },
+        notEmpty: {
+          msg: 'Age cannot be empty'
+        },
+      }
+    },
+    location: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Location cannot be empty'
+        },
+        notEmpty: {
+          msg: 'Location cannot be empty'
+        },
+      }
+    },
     gender: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Profile',
   });
+
+  Profile.beforeCreate((user, option) => {
+    if(user.gender === 'male') {
+      user.name = 'Mr.' + user.name
+    } else {
+      user.name = 'Mrs.' + user.name
+    }
+  })
+
+  
   return Profile;
 };

@@ -52,19 +52,20 @@
   </style>
 </head>
 
-<body>
+<body class="container">
   <%- include('./partials/navbar') %> 
   <% if (error) { %>
-    <div>
+    <div style="color: red;">
       <h1><%= error %></h1>
     </div>
-    <% } else { %> 
+    <% } %>
+
       <div>
         <h1 style="padding: 1px 0 1px 0; color: cadetblue">Create New Patient User and Profile</h1>
         <h2 style="padding: 10px 0 5px 0; color: cadetblue">Please fill the form below to add Patient User and Profile</h2>
       </div>
 
-  <div class="container">
+  <div >
     <form action="/user/formAddPatient" method="post">
       <div>
         <h3 style="padding: 1px 0 1px 0; color: rgb(39, 75, 236)">Create  Patient New User:</h3>
@@ -108,7 +109,7 @@
         
     </form>
   </div>
-  <% } %>
+
 
 </body>
 

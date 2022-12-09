@@ -9,28 +9,29 @@
 <body>
   <%- include('./partials/navbar.ejs') %> 
 
-  <div class="container">
-    <h1> Sign in RoboDoc </h1>
+  <div class="container" >
+    <h1 style="text-align: center;"> Sign in Well-Frame </h1>
     <br />
     <h1 style="color: red;"><%= errors %></h1>
-    <form action="/login" method="post">
-      <div class="row">
-        <div class="username">
+    <form action="/login" method="post" >
+      <div class="row" >
+        <div class="username" >
           <label for="userName">Username</label>
           <input type="text" name="userName" id="userName">
         </div>
         <br />
 
         <div class="password">
-          <label for="password">Password</label>
+          <label for="password">Password</label><br>
           <input type="password" name="password" id="password">
         </div>
         <br />
 
       </div>
-      <button type="submit">Login</button>
-      <button><a href="/user/formAddPatient">Create New Account</a></button>
+      <button class="button" type="submit">Login</button>
+
     </form>
+    <a href="/user/formAddPatient" class="button">Create New Account</a>
   </div>
   
 </body>
